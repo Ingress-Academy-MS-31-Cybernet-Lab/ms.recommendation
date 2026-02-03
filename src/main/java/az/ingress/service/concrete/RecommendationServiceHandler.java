@@ -15,7 +15,7 @@ public class RecommendationServiceHandler implements RecommendationService {
 
     @Override
     public void recalculate(Long userId) {
-        log.info("ActionLog.RecommendationServiceHandler.recalculate.start: param={}", userId);
+        log.info("ActionLog.RecommendationServiceHandler.recalculate.start: userId={}", userId);
         // todo
     }
 }

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RecommendationEventDTO {
     private Long userId;
-    private Long productId;
+    private Long parentId;
     private ActionType action;
     private LocalDateTime eventTime;
 }

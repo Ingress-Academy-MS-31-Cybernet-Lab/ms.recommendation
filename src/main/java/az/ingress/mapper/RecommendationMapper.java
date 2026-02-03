@@ -11,7 +11,7 @@ public enum RecommendationMapper {
     public UserInteractionEntity buildEntity(RecommendationEventDTO recommendationEventDTO) {
         return UserInteractionEntity.builder()
                 .userId(recommendationEventDTO.getUserId())
-                .productId(recommendationEventDTO.getProductId())
+                .parentId(recommendationEventDTO.getParentId())
                 .action(recommendationEventDTO.getAction())
                 .eventTime(recommendationEventDTO.getEventTime())
                 .build();
@@ -21,7 +21,7 @@ public enum RecommendationMapper {
         return entities.stream()
                 .map(e -> new RecommendationEventDTO(
                         e.getUserId(),
-                        e.getProductId(),
+                        e.getParentId(),
                         e.getAction(),
                         e.getEventTime()
                 ))

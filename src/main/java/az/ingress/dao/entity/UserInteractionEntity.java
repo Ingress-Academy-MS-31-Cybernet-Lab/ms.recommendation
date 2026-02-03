@@ -31,7 +31,7 @@ public class UserInteractionEntity {
 
     private Long userId;
 
-    private Long productId;
+    private Long parentId;
 
     @Enumerated(STRING)
     private ActionType action;

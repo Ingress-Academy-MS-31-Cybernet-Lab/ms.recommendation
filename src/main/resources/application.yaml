@@ -6,13 +6,13 @@ spring:
     name: ms.recommendation
 
   profiles:
-    active: ${ACTIVE_PROFILE:local}
+    active: ${ACTIVE_PROFILE}
 
   datasource:
-    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
-    url: ${DB_URL:jdbc:postgresql://localhost:5433/postgres}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -20,6 +20,9 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate
+
+  liquibase:
+    change-log: classpath:db.changelog/changelog-master.yml
 
   rabbitmq:
     host: localhost
@@ -34,10 +37,6 @@ spring:
           max-interval: 5000ms
           multiplier: 1
         missing-queues-fatal: false
-
-redis:
-  server:
-    urls: redis://localhost:6379
 
 rabbitmq:
   queue:

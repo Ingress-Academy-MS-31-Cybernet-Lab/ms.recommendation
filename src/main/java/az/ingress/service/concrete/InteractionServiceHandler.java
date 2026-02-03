@@ -18,7 +18,7 @@ public class InteractionServiceHandler implements InteractionService {
 
     @Override
     public void save(RecommendationEventDTO recommendationEventDTO) {
-        log.info("ActionLog.InteractionServiceHandler.save.start: param={}", recommendationEventDTO);
+        log.info("ActionLog.InteractionServiceHandler.save.start: recommendationEventDTO={}", recommendationEventDTO);
 
         var interaction = RECOMMENDATION_MAPPER.buildEntity(recommendationEventDTO);
         userInteractionRepository.save(interaction);

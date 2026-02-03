@@ -4,7 +4,7 @@ import az.ingress.dao.entity.UserInteractionEntity;
 import az.ingress.dao.repository.UserInteractionRepository;
 import az.ingress.model.policy.ActionWeightProvider;
 import az.ingress.model.response.RecommendationResponse;
-import az.ingress.service.abstraction.RecommendationService;
+import az.ingress.service.abstraction.UserRecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,17 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class RecommendationServiceHandler implements RecommendationService {
+public class UserRecommendationServiceHandler implements UserRecommendationService {
     private final UserInteractionRepository interactionRepository;
 
     @Override
     public List<RecommendationResponse> getRecommendations(Long userId) {
-        List<UserInteractionEntity> interactions = interactionRepository.findByUserId(userId);
+        var interactions = interactionRepository.findByUserId(userId);
 
         Map<Long, Integer> scoreMap = new HashMap<>();
 
         for (UserInteractionEntity interaction : interactions) {
-            int weight = ActionWeightProvider.getWeight(interaction.getAction());
+            var weight = ActionWeightProvider.getWeight(interaction.getAction());
 
             scoreMap.merge(
                     interaction.getParentId(),

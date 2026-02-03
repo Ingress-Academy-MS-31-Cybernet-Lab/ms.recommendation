@@ -24,7 +24,7 @@ public class RecommendationListener {
 
             interactionService.save(recommendationEvent);
         } catch (JsonProcessingException e) {
-            log.error("ActionLog.TestListener.handleV2.failed: invalid format={}", message);
+            log.error("ActionLog.TestListener.handle.failed: invalid format={}", message);
         } catch (Exception e) {
             throw new QueueException();
         }

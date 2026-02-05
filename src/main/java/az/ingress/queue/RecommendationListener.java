@@ -1,7 +1,7 @@
 package az.ingress.queue;
 
 import az.ingress.exception.QueueException;
-import az.ingress.model.dto.RecommendationQueueDTO;
+import az.ingress.model.queue.RecommendationQueueDTO;
 import az.ingress.service.abstraction.InteractionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,7 +1,7 @@
 package az.ingress.service.concrete;
 
 import az.ingress.dao.repository.UserInteractionRepository;
-import az.ingress.model.dto.RecommendationQueueDTO;
+import az.ingress.model.queue.RecommendationQueueDTO;
 import az.ingress.service.abstraction.InteractionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

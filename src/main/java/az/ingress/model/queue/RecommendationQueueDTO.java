@@ -1,4 +1,4 @@
-package az.ingress.model.dto;
+package az.ingress.model.queue;
 
 import az.ingress.model.enums.ActionType;
 import lombok.AllArgsConstructor;

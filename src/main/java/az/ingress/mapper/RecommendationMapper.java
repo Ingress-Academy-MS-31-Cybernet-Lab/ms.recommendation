@@ -1,7 +1,7 @@
 package az.ingress.mapper;
 
 import az.ingress.dao.entity.UserInteractionEntity;
-import az.ingress.model.dto.RecommendationQueueDTO;
+import az.ingress.model.queue.RecommendationQueueDTO;
 
 public enum RecommendationMapper {
     RECOMMENDATION_MAPPER;

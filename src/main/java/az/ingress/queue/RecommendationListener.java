@@ -1,7 +1,7 @@
 package az.ingress.queue;
 
 import az.ingress.exception.QueueException;
-import az.ingress.model.dto.RecommendationEventDTO;
+import az.ingress.model.dto.RecommendationQueueDTO;
 import az.ingress.service.abstraction.InteractionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,11 +20,11 @@ public class RecommendationListener {
     @RabbitListener(queues = "${rabbitmq.queue.recommendation}")
     public void handle(String message) {
         try {
-            var recommendationEvent = objectMapper.readValue(message, RecommendationEventDTO.class);
+            var recommendationEvent = objectMapper.readValue(message, RecommendationQueueDTO.class);
 
             interactionService.save(recommendationEvent);
         } catch (JsonProcessingException e) {
-            log.error("ActionLog.TestListener.handle.failed: invalid format={}", message);
+            log.error("ActionLog.handle.error: invalid format={}", message);
         } catch (Exception e) {
             throw new QueueException();
         }

@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecommendationResponse {
-    private String parentId;
+    private String categoryId;
 }

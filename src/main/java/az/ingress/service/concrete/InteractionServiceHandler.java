@@ -1,7 +1,7 @@
 package az.ingress.service.concrete;
 
 import az.ingress.dao.repository.UserInteractionRepository;
-import az.ingress.model.dto.RecommendationEventDTO;
+import az.ingress.model.dto.RecommendationQueueDTO;
 import az.ingress.service.abstraction.InteractionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,10 +17,10 @@ public class InteractionServiceHandler implements InteractionService {
     private final UserInteractionRepository userInteractionRepository;
 
     @Override
-    public void save(RecommendationEventDTO recommendationEventDTO) {
-        log.info("ActionLog.InteractionServiceHandler.save.start: recommendationEventDTO={}", recommendationEventDTO);
+    public void save(RecommendationQueueDTO recommendationQueueDTO) {
+        log.info("ActionLog.save.start: recommendationEventDTO={}", recommendationQueueDTO);
 
-        var interaction = RECOMMENDATION_MAPPER.buildEntity(recommendationEventDTO);
+        var interaction = RECOMMENDATION_MAPPER.buildEntity(recommendationQueueDTO);
         userInteractionRepository.save(interaction);
     }
 }

@@ -19,7 +19,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: parent_id
+                  name: category_id
                   type: BIGINT
                   constraints:
                     nullable: false
@@ -33,3 +33,9 @@ databaseChangeLog:
                   type: TIMESTAMP
                   constraints:
                     nullable: false
+        - createIndex:
+            indexName: idx_user_interactions_user_id
+            tableName: user_interactions
+            columns:
+              - column:
+                  name: user_id

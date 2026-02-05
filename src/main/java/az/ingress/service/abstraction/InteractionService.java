@@ -1,7 +1,7 @@
 package az.ingress.service.abstraction;
 
-import az.ingress.model.dto.RecommendationEventDTO;
+import az.ingress.model.dto.RecommendationQueueDTO;
 
 public interface InteractionService {
-    void save(RecommendationEventDTO recommendationEventDTO);
+    void save(RecommendationQueueDTO recommendationQueueDTO);
 }

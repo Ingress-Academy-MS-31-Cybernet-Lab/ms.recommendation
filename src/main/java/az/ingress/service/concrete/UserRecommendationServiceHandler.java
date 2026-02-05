@@ -23,11 +23,11 @@ public class UserRecommendationServiceHandler implements UserRecommendationServi
 
         Map<Long, Integer> scoreMap = new HashMap<>();
 
-        for (UserInteractionEntity interaction : interactions) {
+        for (var interaction : interactions) {
             var weight = ActionWeightProvider.getWeight(interaction.getAction());
 
             scoreMap.merge(
-                    interaction.getParentId(),
+                    interaction.getCategoryId(),
                     weight,
                     Integer::sum
             );
@@ -38,7 +38,7 @@ public class UserRecommendationServiceHandler implements UserRecommendationServi
                 .sorted(Map.Entry.<Long, Integer>comparingByValue().reversed())
                 .limit(10)
                 .map(entry -> RecommendationResponse.builder()
-                        .parentId(entry.getKey().toString())
+                        .categoryId(entry.getKey().toString())
                         .build()
                 )
                 .toList();

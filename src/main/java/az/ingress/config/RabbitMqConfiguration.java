@@ -11,56 +11,56 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMqConfiguration {
-    private final String publisherQ;
-    private final String publisherDLQ;
-    private final String publisherQExchange;
-    private final String publisherDLQExchange;
-    private final String publisherQKey;
-    private final String publisherDLQKey;
+    private final String recommendationQ;
+    private final String recommendationDLQ;
+    private final String recommendationQExchange;
+    private final String recommendationDLQExchange;
+    private final String recommendationQKey;
+    private final String recommendationDLQKey;
 
-    public RabbitMqConfiguration(@Value("${rabbitmq.queue.recommendation}") String publisherQ,
-                                 @Value("${rabbitmq.queue.recommendation-dlq}") String publisherDLQ) {
+    public RabbitMqConfiguration(@Value("${rabbitmq.queue.recommendation}") String recommendationQ,
+                                 @Value("${rabbitmq.queue.recommendation-dlq}") String recommendationDLQ) {
 
-        this.publisherQ = publisherQ;
-        this.publisherDLQ = publisherDLQ;
-        this.publisherQExchange = publisherQ + "_EXCHANGE";
-        this.publisherDLQExchange = publisherDLQ + "_EXCHANGE";
-        this.publisherQKey = publisherQ + "_KEY";
-        this.publisherDLQKey = publisherDLQ + "_KEY";
+        this.recommendationQ = recommendationQ;
+        this.recommendationDLQ = recommendationDLQ;
+        this.recommendationQExchange = recommendationQ + "_EXCHANGE";
+        this.recommendationDLQExchange = recommendationDLQ + "_EXCHANGE";
+        this.recommendationQKey = recommendationQ + "_KEY";
+        this.recommendationDLQKey = recommendationDLQ + "_KEY";
     }
 
     @Bean
-    DirectExchange publisherDLQExchange() {
-        return new DirectExchange(publisherDLQExchange);
+    public DirectExchange recommendationDLQExchange() {
+        return new DirectExchange(recommendationDLQExchange);
     }
 
     @Bean
-    DirectExchange publisherQExchange() {
-        return new DirectExchange(publisherQExchange);
+    public DirectExchange recommendationQExchange() {
+        return new DirectExchange(recommendationQExchange);
     }
 
     @Bean
-    Queue publisherDLQ() {
-        return QueueBuilder.durable(publisherDLQ).build();
+    public Queue recommendationDLQ() {
+        return QueueBuilder.durable(recommendationDLQ).build();
     }
 
     @Bean
-    Queue publisherQ() {
-        return QueueBuilder.durable(publisherQ)
-                .withArgument("x-dead-letter-exchange", publisherDLQExchange)
-                .withArgument("x-dead-letter-routing-key", publisherDLQKey)
+    public Queue recommendationQ() {
+        return QueueBuilder.durable(recommendationQ)
+                .withArgument("x-dead-letter-exchange", recommendationDLQExchange)
+                .withArgument("x-dead-letter-routing-key", recommendationDLQKey)
                 .build();
     }
 
     @Bean
-    Binding publisherDLQBinding() {
-        return BindingBuilder.bind(publisherDLQ())
-                .to(publisherDLQExchange()).with(publisherDLQKey);
+    public Binding recommendationDLQBinding() {
+        return BindingBuilder.bind(recommendationDLQ())
+                .to(recommendationDLQExchange()).with(recommendationDLQKey);
     }
 
     @Bean
-    Binding publisherQBinding() {
-        return BindingBuilder.bind(publisherQ())
-                .to(publisherQExchange()).with(publisherQKey);
+    public Binding recommendationQBinding() {
+        return BindingBuilder.bind(recommendationQ())
+                .to(recommendationQExchange()).with(recommendationQKey);
     }
 }

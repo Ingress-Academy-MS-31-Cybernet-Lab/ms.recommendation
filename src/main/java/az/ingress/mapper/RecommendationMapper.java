@@ -1,30 +1,17 @@
 package az.ingress.mapper;
 
 import az.ingress.dao.entity.UserInteractionEntity;
-import az.ingress.model.dto.RecommendationEventDTO;
-
-import java.util.List;
+import az.ingress.model.dto.RecommendationQueueDTO;
 
 public enum RecommendationMapper {
     RECOMMENDATION_MAPPER;
 
-    public UserInteractionEntity buildEntity(RecommendationEventDTO recommendationEventDTO) {
+    public UserInteractionEntity buildEntity(RecommendationQueueDTO recommendationQueueDTO) {
         return UserInteractionEntity.builder()
-                .userId(recommendationEventDTO.getUserId())
-                .parentId(recommendationEventDTO.getParentId())
-                .action(recommendationEventDTO.getAction())
-                .eventTime(recommendationEventDTO.getEventTime())
+                .userId(recommendationQueueDTO.getUserId())
+                .categoryId(recommendationQueueDTO.getCategoryId())
+                .action(recommendationQueueDTO.getAction())
+                .eventTime(recommendationQueueDTO.getEventTime())
                 .build();
-    }
-
-    public List<RecommendationEventDTO> buildDTOList(List<UserInteractionEntity> entities) {
-        return entities.stream()
-                .map(e -> new RecommendationEventDTO(
-                        e.getUserId(),
-                        e.getParentId(),
-                        e.getAction(),
-                        e.getEventTime()
-                ))
-                .toList();
     }
 }

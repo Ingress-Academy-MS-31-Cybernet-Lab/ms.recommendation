@@ -1,2 +1,43 @@
 server:
   port: 8080
+
+spring:
+  application:
+    name: ms.recommendation
+
+  profiles:
+    active: ${ACTIVE_PROFILE}
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    change-log: classpath:db.changelog/changelog-master.yml
+
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 3000ms
+          max-attempts: 5
+          max-interval: 5000ms
+          multiplier: 1
+        missing-queues-fatal: false
+
+rabbitmq:
+  queue:
+    recommendation: RECOMMENDATION_Q
+    recommendation-dlq: RECOMMENDATION_DLQ

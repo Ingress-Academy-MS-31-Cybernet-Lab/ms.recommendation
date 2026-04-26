@@ -1,4 +1,4 @@
-## change.my.name
+## ms.recommendation
 
 ### Table of Contents
 
@@ -8,7 +8,7 @@
 ### Run
 
 ```shell script
-$ java -jar change.my.name.jar
+$ java -jar ms.recommendation.jar
 ```
 
 ### Tech stack
